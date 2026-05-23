@@ -1,8 +1,8 @@
-# React Native Sample App 📱✨
+# React Native Sample App
 
 This is a **React Native sample application** built with [Expo](https://expo.dev) and featuring **NativeWind integration** for seamless TailwindCSS styling in React Native.
 
-## 🚀 Key Features
+## Key Features
 
 - **React Native** with Expo Router for file-based navigation
 - **NativeWind** integration for using TailwindCSS utility classes in React Native
@@ -34,17 +34,7 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-pnpm reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## 🎨 Styling with NativeWind & TailwindCSS
+## Styling with NativeWind & TailwindCSS
 
 This project demonstrates how to use **NativeWind** to bring TailwindCSS to React Native development:
 
