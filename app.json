@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "StickerSmash",
-    "slug": "StickerSmash",
+    "name": "React Native Sample App",
+    "slug": "react-native-sample-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "stickersmash",
+    "scheme": "reactnativesampleapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
