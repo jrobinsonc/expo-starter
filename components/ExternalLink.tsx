@@ -6,6 +6,15 @@ import { Platform } from 'react-native';
 type Props = Omit<ComponentProps<typeof Link>, 'href'> & { href: Href & string };
 
 export function ExternalLink({ href, ...rest }: Props) {
+ // Validate URL protocol to prevent XSS and malicious intents
+  const lowerHref = href.toLowerCase();
+  const isSafeUrl = lowerHref.startsWith('http://') || lowerHref.startsWith('https://');
+
+  if (!isSafeUrl) {
+    console.warn('Blocked potentially unsafe URL:', href);
+    return null;
+  }
+
   return (
     <Link
       target="_blank"
