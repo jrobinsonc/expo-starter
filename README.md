@@ -1,6 +1,6 @@
-# React Native Sample App
+# Expo Starter
 
-This is a **React Native sample application** built with [Expo](https://expo.dev) and featuring **NativeWind integration** for seamless TailwindCSS styling in React Native.
+A **React Native starter kit** built with [Expo](https://expo.dev) and featuring **NativeWind integration** for seamless TailwindCSS styling in React Native. Designed for rapidly building cross-platform mobile apps with predefined tools and modern development practices.
 
 ## Key Features
 
