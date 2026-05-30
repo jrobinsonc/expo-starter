@@ -1,5 +1,19 @@
 {
   "name": "expo-starter",
+  "description": "A React Native starter kit built with Expo and NativeWind for rapidly building cross-platform mobile apps with predefined tools and modern development practices.",
+  "keywords": [
+    "expo",
+    "react-native",
+    "starter",
+    "starter-kit",
+    "nativewind",
+    "tailwindcss",
+    "mobile",
+    "ios",
+    "android",
+    "web",
+    "cross-platform"
+  ],
   "main": "expo-router/entry",
   "version": "1.0.0",
   "license": "MIT",
