@@ -37,6 +37,7 @@ You can start developing by editing the files inside the **app** directory. This
 ### Developing with AI
 
 You can configure this project to work with AI coding assistants. Learn more about:
+
 - [Using Model Context Protocol (MCP) with Expo](https://docs.expo.dev/eas/ai/mcp/) to allow AI models to interact with your development environment.
 - Installing [Expo Skills for AI agents](https://docs.expo.dev/skills/) to equip your AI agents with Expo-specific capabilities.
 
@@ -67,7 +68,15 @@ export default function MyComponent() {
 
 ## Compatibility & Dependency Pinning
 
-This project pins specific versions of key packages due to ecosystem compatibility constraints:
+When upgrading or managing dependencies in this project, please keep the following in mind:
+
+### Expo Dependency Alignment
+
+After upgrading packages, the command `pnpm expo install --check` should be executed to make sure installed dependencies are compatible with the installed version of Expo packages. Check [Version validation](https://docs.expo.dev/more/expo-cli/#version-validation) for more information.
+
+### Repository-Specific Version Pins
+
+Separately, this repository pins specific versions of key packages due to unique tool and plugin compatibility constraints:
 
 - **Tailwind CSS (`^3.4.0`)**: Pinned to version 3 because **NativeWind v4** does not yet support Tailwind CSS v4. Upgrading to Tailwind v4 will break compilation.
 - **ESLint (`^9.21.0`)**: Pinned to version 9 because ESLint v10 causes configuration and plugin crashes (such as `TypeError: contextOrFilename.getFilename is not a function`).
