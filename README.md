@@ -34,6 +34,12 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
+### Developing with AI
+
+You can configure this project to work with AI coding assistants. Learn more about:
+- [Using Model Context Protocol (MCP) with Expo](https://docs.expo.dev/eas/ai/mcp/) to allow AI models to interact with your development environment.
+- Installing [Expo Skills for AI agents](https://docs.expo.dev/skills/) to equip your AI agents with Expo-specific capabilities.
+
 ## Styling with NativeWind & TailwindCSS
 
 This project demonstrates how to use **NativeWind** to bring TailwindCSS to React Native development:
@@ -58,6 +64,15 @@ export default function MyComponent() {
   );
 }
 ```
+
+## Compatibility & Dependency Pinning
+
+This project pins specific versions of key packages due to ecosystem compatibility constraints:
+
+- **Tailwind CSS (`^3.4.0`)**: Pinned to version 3 because **NativeWind v4** does not yet support Tailwind CSS v4. Upgrading to Tailwind v4 will break compilation.
+- **ESLint (`^9.21.0`)**: Pinned to version 9 because ESLint v10 causes configuration and plugin crashes (such as `TypeError: contextOrFilename.getFilename is not a function`).
+
+Please do not upgrade these packages beyond these major versions unless the underlying tooling is updated to support them.
 
 ## Learn more
 
