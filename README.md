@@ -66,6 +66,25 @@ export default function MyComponent() {
 }
 ```
 
+## Continuous Integration
+
+GitHub Actions runs on every pull request and push to `main`:
+
+| Workflow | Job | What it checks |
+| --- | --- | --- |
+| `ci.yml` | Lint | `pnpm lint --max-warnings 0` |
+| `ci.yml` | Typecheck | `pnpm typecheck` (`tsc --noEmit`) |
+| `ci.yml` | Expo dependency check | `expo install --check` and `expo-doctor` (SDK alignment) |
+| `ci.yml` | Bundle (web/android/ios) | `expo export` per platform; the web build is uploaded as an artifact |
+| `ci.yml` | CI success | Aggregates the jobs above; use it as the single required status check |
+| `security.yml` | Dependency review / pnpm audit | Blocks new high/critical vulnerabilities; also runs weekly |
+
+Node is pinned via `.nvmrc` and pnpm via the `packageManager` field in `package.json`. Run the same checks locally with:
+
+```bash
+pnpm lint && pnpm typecheck && pnpm expo install --check
+```
+
 ## Compatibility & Dependency Pinning
 
 When upgrading or managing dependencies in this project, please keep the following in mind:

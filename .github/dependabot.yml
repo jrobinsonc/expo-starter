@@ -9,3 +9,42 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    # Packages whose versions are dictated by the Expo SDK. Bumping them individually
+    # breaks SDK alignment (e.g. react/react-dom mismatches). Upgrade these with
+    # `pnpm expo install --fix` or an Expo SDK upgrade instead.
+    # Security updates are not affected by this list.
+    ignore:
+      - dependency-name: "expo"
+      - dependency-name: "expo-*"
+      - dependency-name: "@expo/*"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "react-native"
+      - dependency-name: "react-native-gesture-handler"
+      - dependency-name: "react-native-reanimated"
+      - dependency-name: "react-native-safe-area-context"
+      - dependency-name: "react-native-screens"
+      - dependency-name: "react-native-web"
+      - dependency-name: "react-native-webview"
+      - dependency-name: "react-native-worklets"
+      - dependency-name: "@types/react"
+      - dependency-name: "typescript"
+      - dependency-name: "eslint-config-expo"
+      # Pinned majors (see README "Repository-Specific Version Pins").
+      - dependency-name: "tailwindcss"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+      dependencies:
+        dependency-type: "production"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      github-actions:
+        patterns: ["*"]

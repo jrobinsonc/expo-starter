@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Cancel superseded runs on the same branch/PR (but never on main).
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
+
+env:
+  CI: true
+  EXPO_NO_TELEMETRY: 1
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm lint --max-warnings 0
+
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      - run: pnpm typecheck
+
+  expo-doctor:
+    name: Expo dependency check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      # Fails if any package is not aligned with the installed Expo SDK
+      # (see "Expo Dependency Alignment" in the README).
+      - name: Validate Expo SDK dependency versions
+        run: pnpm exec expo install --check
+      - name: Run Expo Doctor
+        run: pnpm dlx expo-doctor@latest
+
+  export:
+    name: Bundle (${{ matrix.platform }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [web, android, ios]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup
+      # Produces production JS bundles with Metro. This catches resolution, Babel,
+      # NativeWind and (for web) static-rendering errors without needing a native toolchain.
+      - name: Export ${{ matrix.platform }} bundle
+        run: pnpm exec expo export --platform ${{ matrix.platform }} --output-dir dist
+      - name: Upload web build
+        if: matrix.platform == 'web'
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: dist
+          retention-days: 7
+
+  # Single required status check for branch protection.
+  ci-success:
+    name: CI success
+    if: always()
+    needs: [lint, typecheck, expo-doctor, export]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify all jobs succeeded
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
+
