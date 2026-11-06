@@ -1,5 +1,10 @@
 # Expo Starter
 
+[![CI](https://github.com/jrobinsonc/expo-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/jrobinsonc/expo-starter/actions/workflows/ci.yml)
+[![Security](https://github.com/jrobinsonc/expo-starter/actions/workflows/security.yml/badge.svg)](https://github.com/jrobinsonc/expo-starter/actions/workflows/security.yml)
+[![Dependabot Updates](https://github.com/jrobinsonc/expo-starter/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/jrobinsonc/expo-starter/actions/workflows/dependabot/dependabot-updates)
+[![CodeQL](https://github.com/jrobinsonc/expo-starter/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/jrobinsonc/expo-starter/actions/workflows/github-code-scanning/codeql)
+
 A **React Native starter kit** built with [Expo](https://expo.dev) and featuring **NativeWind integration** for seamless TailwindCSS styling in React Native. Designed for rapidly building cross-platform mobile apps with predefined tools and modern development practices.
 
 ## Key Features
